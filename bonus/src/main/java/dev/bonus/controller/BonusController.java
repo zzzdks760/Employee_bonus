@@ -1,4 +1,4 @@
-package dev.syntax.controller;
+package dev.bonus.controller;
 
 public class BonusController {
 

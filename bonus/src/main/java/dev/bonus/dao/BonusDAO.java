@@ -1,5 +1,5 @@
-package dev.syntax.dao;
+package dev.bonus.dao;
 
 public class BonusDAO {
-	
+
 }
