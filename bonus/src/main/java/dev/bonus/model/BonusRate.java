@@ -7,12 +7,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class DeptGrade {
-	
-	private int grade_no;
-	private int bonus_rate;
-	private int percentage;
-	private Grade grade;
-	
+public class BonusRate {
+	private int emp_no;
+	private String year;
+	private int bouns_rate;
 }
