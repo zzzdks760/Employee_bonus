@@ -1,14 +1,22 @@
 package dev.bonus.controller;
 
+import java.sql.Connection;
 import java.util.List;
 
 import dev.bonus.model.BonusRate;
 import dev.bonus.service.BonusService;
+import dev.bonus.util.DBUtil;
 
 public class BonusController {
 	
-	BonusService bonusService = new BonusService();
+	BonusService bonusService;
+	Connection connection;
 	
+	public BonusController(String url, String database, String user, String password) {
+		this.connection = DBUtil.getConnection(url, database, user, password);
+		this.bonusService = new BonusService(this.connection);
+	}
+
 //	특정 년도를 입력받아 직원들의 성과급 조회
 	public void empBonusByYear(int year) {
 		List<BonusRate> findBonusRateByYear = bonusService.findBonusRateByYear(year);
@@ -42,4 +50,6 @@ public class BonusController {
 			System.out.println(bonusRate.getYear() + "년도의 평균 성과급: " + bonusRate.getBouns());
 		}
 	}
+	
+	
 }

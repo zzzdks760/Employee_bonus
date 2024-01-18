@@ -1,7 +1,5 @@
 package dev.bonus.util;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -9,25 +7,21 @@ import java.util.Properties;
 
 public class DBUtil {
 
-	public static Connection getConnection() {
+
+	public static Connection getConnection(String url, String database, String user, String password) {
 		// 코드 작성 후 App.java에서 호출 가능하도록
 		Properties prop = new Properties();
 		
 		try {
-			FileInputStream fs = new FileInputStream("src/main/resources/jdbc.properties");
+
+//			final String DB_URL = prop.getProperty(url);
+//			final String DATABASE_NAME = prop.getProperty(database);
+//			final String USER = prop.getProperty(user);
+//			final String PASSWORD = prop.getProperty(password);
 			
-			prop.load(fs);
+			return DriverManager.getConnection(url + database, user, password);
 			
-//			prop.list(System.out);
-			
-			final String DB_URL = prop.getProperty("url");
-			final String DATABASE_NAME = prop.getProperty("database");
-			final String USER = prop.getProperty("username");
-			final String PASSWORD = prop.getProperty("password");
-			
-			return DriverManager.getConnection(DB_URL + DATABASE_NAME, USER, PASSWORD);
-			
-		} catch (IOException | SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
 		

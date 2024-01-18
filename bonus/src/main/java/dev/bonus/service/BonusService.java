@@ -1,5 +1,6 @@
 package dev.bonus.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -8,8 +9,14 @@ import dev.bonus.model.BonusRate;
 
 public class BonusService {
 	
-	BonusRateDAO bonusRateDAO = new BonusRateDAO();
+	BonusRateDAO bonusRateDAO;
+	Connection inputConnection;
 	
+	public BonusService(Connection inputConnection) {
+		this.inputConnection = inputConnection;
+		this.bonusRateDAO = new BonusRateDAO(inputConnection);
+	}
+
 	public List<BonusRate> findBonusRateByYear(int inputYear) {
 		if (inputYear >= 1985 && inputYear <= 2001) {
 			String year = Integer.toString(inputYear);
